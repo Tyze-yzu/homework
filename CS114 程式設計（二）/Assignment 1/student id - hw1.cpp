@@ -87,6 +87,7 @@ void vector::resize(unsigned int n)
       else
          myFirst[i] = 0;
    }
+   delete[] tmpptr;
 }
 
 // Determines if two vectors are equal.
