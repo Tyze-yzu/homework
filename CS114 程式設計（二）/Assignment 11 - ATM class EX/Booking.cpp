@@ -85,13 +85,15 @@ string Booking::getSeletedSeat( int number )
 
 void Booking::displayBooking( MovieDatabase &movieDatabase )
 {
-	Movie tmp = movieDatabase.getMovie(movieCode);
-	cout << "Movie: " << movieNames[tmp.getMovieCode()] << endl;
-	cout << "Date: " << availableDates[tmp.getDate(dateCode)] << endl;
-	cout << "Show Time: " << hours[tmp.getSessionTime(sessionTimeCode)] << endl;
-	cout << "Seats:";
-	int sum = getNumTickets(0) + getNumTickets(1) + getNumTickets(2) + getNumTickets(3);
-	for (int j = 0; j < sum; j++)
-		cout << " " << getSeletedSeat(j);
-	cout << endl;
+	cout << setw(7) << left << "" << setw(15) << right << "No. of Tickets" << setw(7) << right << "Price" << setw(10) << right << "Subtotal" << endl;
+	string text[4] = { "Adult", "Concession", "Disability", "Elderly" };
+	int total = 0;
+	for (int i = 0; i < 4; i++) {
+		if (numTickets[i] != 0) {
+			int tmp = movieDatabase.getMovie(movieCode).getPrice(i) * numTickets[i];
+			total += tmp;
+			cout << setw(7) << left << text[i] << setw(15) << right << numTickets[i] << setw(7) << right << movieDatabase.getMovie(movieCode).getPrice(i) << setw(10) << right << tmp << endl;
+		}
+	}
+	cout << endl << "Total Amount For Tickets: " << total << endl;
 }

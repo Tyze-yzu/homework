@@ -63,7 +63,8 @@ int inputAnInteger( int begin, int end )
 {
    char string[ 80 ];
 
-   cin.getline( string, 80, '\n' );
+   //cin.getline( string, 80, '\n' );
+   cin >> string;
 
    if( strlen( string ) == 0 || strlen( string ) >= 3 )
       return -1;

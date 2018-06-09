@@ -51,6 +51,16 @@ void BookingDatabase::displayBookings( string email, MovieDatabase &movieDatabas
 	cout << "\nBooking History\n" << endl;
 	for (unsigned int i = 0; i < bookings.size(); i++) {
 		if (bookings[i].getEmail() == email) {
+			Movie tmp = movieDatabase.getMovie(bookings[i].getMovieCode());
+			cout << "Movie: " << movieNames[tmp.getMovieCode()] << endl;
+			cout << "Date: " << availableDates[bookings[i].getDateCode()] << endl;
+			cout << "Show Time: " << hours[bookings[i].getSessionTimeCode()] << endl;
+			cout << "Seats:";
+			int sum = bookings[i].getNumTickets(0) + bookings[i].getNumTickets(1) + bookings[i].getNumTickets(2) + bookings[i].getNumTickets(3);
+			for (int j = 0; j < sum; j++)
+				cout << " " << bookings[i].getSeletedSeat(j);
+			cout << endl;
+
 			bookings[i].displayBooking(movieDatabase);
 			//display(movies, bookingHistories[i]);
 			cout << "\n----------------------------------------------\n" << endl;

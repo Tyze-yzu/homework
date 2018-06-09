@@ -50,7 +50,7 @@ vector< Member >::iterator MemberDatabase::getMember( string email, string passw
 	for( ; it != members.end(); ++it)
 		if (it->getEmail() == email && it->getPassword() == password)
 			return it;
-	return nullptr;
+	return it;
 }
 
 void MemberDatabase::loadMembers()
